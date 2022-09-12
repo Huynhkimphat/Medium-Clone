@@ -29,7 +29,7 @@ const styles = {
     articleText: `font-mediumSerif text-[1.4rem] text-[#292929]`,
 };
 
-const ArticleMain = () => {
+const ArticleMain = ({ post, author }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
@@ -38,16 +38,24 @@ const ArticleMain = () => {
                         <div className={styles.authorProfileImageContainer}>
                             <Image
                                 className={styles.image}
-                                src={Qazi}
+                                src={author?.data?.imageUrl}
                                 width={100}
                                 height={100}
                                 alt={""}
                             />
                         </div>
                         <div className={styles.column}>
-                            <div>Phat Huynh</div>
+                            <div>{author?.data?.name}</div>
                             <div className={styles.postDetails}>
-                                <span>Jun 15 • 5 mins read •</span>
+                                <span>
+                                    {new Date(
+                                        post?.data?.postedOn
+                                    ).toLocaleDateString("en-US", {
+                                        day: "numeric",
+                                        month: "short",
+                                    })}{" "}
+                                    • {post?.data?.postLength} mins read •
+                                </span>
                                 <span className={styles.listenButton}>
                                     <AiFillPlayCircle />
                                     Listen
@@ -69,29 +77,29 @@ const ArticleMain = () => {
                 <div className={styles.articleMainContainer}>
                     <div className={styles.bannerContainer}>
                         <Image
-                            src={Banner}
+                            src={`https://res.cloudinary.com/demo/image/fetch/${post?.data?.bannerImage}`}
                             height={100}
                             width={100}
                             className={styles.bannerImg}
                             alt={""}
                         />
                     </div>
-                    <h1 className={styles.title}>
-                        7 Free Tools That Will Make You More Productive In 2022.
-                    </h1>
+                    <h1 className={styles.title}>{post?.data?.title}</h1>
                     <h4 className={styles.subtitle}>
-                        <div>Phat Huynh, June 15,2022</div>
                         <div>
-                            Brief: Productivity is a skill that can be learned
+                            {author?.data?.name},{" "}
+                            {new Date(post?.data?.postedOn).toLocaleDateString(
+                                "en-US",
+                                {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                }
+                            )}
                         </div>
+                        <div>{post?.data?.brief}</div>
                     </h4>
-                    <div className={styles.articleText}>
-                        {`I love being productive every day as it helps me sort out all my priorities very quickly. 
-					Being Productive is a superpower we all must acquire early in out lives. 
-					So, for this same quest, I keep search for some of the best Productive tools that will help me to 
-					stay productive all day long. So, here I have curated some of the best Productive Tools 
-					that will also make you more productive so that you can achieve most of the day very easily. Let's get started`}
-                    </div>
+                    <div className={styles.articleText}>{post?.data?.body}</div>
                 </div>
             </div>
         </div>

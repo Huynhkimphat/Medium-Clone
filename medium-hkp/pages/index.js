@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import PostCard from "../components/PostCard";
+import { MediumContext } from "../context/MediumContext";
+import { useContext } from "react";
 
 const styles = {
     postsList:
@@ -11,6 +13,7 @@ const styles = {
 };
 
 export default function Home() {
+    const { users, posts } = useContext(MediumContext);
     return (
         <div className={styles.wrapper}>
             <Header />
@@ -18,9 +21,9 @@ export default function Home() {
             <div className={styles.main}>
                 <div className={styles.container}>
                     <div className={styles.postsList}>
-                        <PostCard />
-                        <PostCard />
-                        <PostCard />
+                        {posts.map((post) => (
+                            <PostCard key={post.id} post={post} />
+                        ))}
                     </div>
                 </div>
             </div>
