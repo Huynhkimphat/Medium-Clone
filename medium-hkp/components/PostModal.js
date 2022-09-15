@@ -15,7 +15,7 @@ const styles = {
     accentedButton:`bg-black text-white py-2 px-4 rounded-full`
 };
 
-const PostModal = () => {
+const PostModal = ({onCloseModal}) => {
     const {currentUser}=useContext(MediumContext);
 
     const [title,setTitle]=useState('')
@@ -37,6 +37,7 @@ const PostModal = () => {
             category:category,
             author:currentUser.email
         })
+        onCloseModal();
     }
     return (
         <div className={styles.wrapper}>

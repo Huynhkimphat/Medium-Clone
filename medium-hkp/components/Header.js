@@ -74,7 +74,7 @@ const Header = () => {
                 onRequestClose={() => router.push('/')}
                 style={customStyles}
             >
-                <PostModal/>
+                <PostModal onCloseModal={()=>router.push('/')}/>
             </Modal>
         </div>
     );
