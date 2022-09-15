@@ -15,7 +15,7 @@ const styles = {
     postHeaderContainer: `flex justify-between items-center mt-[2.2rem] mb-[1.2rem]`,
     authorContainer: "flex gap-[1rem]",
     authorProfileImageContainer: `h-[3rem] w-[3rem] grid center rounded-full overflow-hidden`,
-    image: `object-cover`,
+    image: `object-contain`,
     column: `flex-1 flex flex-col justify-center`,
     postDetails: `flex gap-[.2rem] text-[#787878]`,
     listenButton: `flex items-center gap-[.2rem] text-[#1A8917]`,
@@ -38,7 +38,7 @@ const ArticleMain = ({ post, author }) => {
                         <div className={styles.authorProfileImageContainer}>
                             <Image
                                 className={styles.image}
-                                src={author?.data?.imageUrl}
+                                src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageUrl}`}
                                 width={100}
                                 height={100}
                                 alt={""}
